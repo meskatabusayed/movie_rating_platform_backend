@@ -36,7 +36,11 @@ const movieSchema = new Schema<TMovie>(
       required: true,
       trim: true,
     },
-
+    slug: {
+      type: String,
+      unique: true,
+      index: true,
+    },
     description: {
       type: String,
       required: true,
@@ -73,5 +77,21 @@ const movieSchema = new Schema<TMovie>(
     timestamps: true,
   }
 );
+
+movieSchema.pre("save", function () {
+  if (this.isModified("title") || this.isModified("releaseDate")) {
+    const title = this.title
+      .toLowerCase()
+      .trim()
+      .replace(/[^a-z0-9\s-]/g, "")
+      .replace(/\s+/g, "-")
+      .replace(/-+/g, "-");
+
+    const date = this.releaseDate.toISOString().split("T")[0];
+
+    this.slug = `${title}-${date}`;
+  }
+
+});
 
 export const Movie = model<TMovie>("Movie", movieSchema);
