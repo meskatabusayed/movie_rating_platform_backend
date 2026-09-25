@@ -4,7 +4,7 @@ const router = express.Router();
 
 router.post('/create-movie', MovieControllers.createMovie);
 router.get('/movies', MovieControllers.getAllMovies);
-router.get('/movies/:movieId', MovieControllers.getSingleMovie);
+router.get('/movies/:slug', MovieControllers.getSingleMovie);
 router.patch('/movies/:movieId', MovieControllers.updateSingleMovie);
 router.patch(
   "/bulk-update",

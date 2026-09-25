@@ -24,8 +24,8 @@ const getAllMovies = async (req: Request, res: Response) => {
 };
 
 const getSingleMovie = async (req: Request, res: Response) => {
-  const { movieId } = req.params;
-  const result = await MovieServices.getSingleMovieFromDB(movieId as string);     
+  const { slug } = req.params;
+  const result = await MovieServices.getSingleMovieFromDB(slug as string);     
 
   res.json({
     success: true,

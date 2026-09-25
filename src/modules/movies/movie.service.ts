@@ -13,8 +13,8 @@ const getAllMoviesFromDB = async () => {
 }   
 
 
-const getSingleMovieFromDB = async (movieId: string) => {
-    const result = await Movie.findOne({ _id: movieId, isDeleted: false });
+const getSingleMovieFromDB = async (slug: string) => {
+    const result = await Movie.findOne({ slug: slug, isDeleted: false });
     return result;
 }
 
