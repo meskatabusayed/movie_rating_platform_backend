@@ -31,21 +31,19 @@ const getAllUsers = async () => {
   return users;
 };
 
-const getSingleUser = async (id: string) => {
-  const user = await User.findOne({
-    _id: id,
-    isDeleted: false,
-  });
+const updateSingleUserIntoDB = async (userId: string, payload: Partial<TUser>) => {
+  const updatedUser = await User.findByIdAndUpdate(
+    {_id : userId, isDeleted: false},
+    payload,
+    { new: true }
+  );
 
-  if (!user) {
-    throw new Error("User not found");
-  }
-
-  return user;
+  return updatedUser;
 };
 
 export const UserService = {
   createUser,
   getAllUsers,
-  getSingleUser,
-};
+  updateSingleUserIntoDB
+};    
+  

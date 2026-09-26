@@ -13,11 +13,16 @@ router.post(
   UserController.createUser
 );
 
+
 router.get(
   "/",
   UserController.getAllUsers
 );
 
+router.put(
+  "/:userId",
+  UserController.updateSingleUser
+);
 
 
 export const UserRoutes = router;
