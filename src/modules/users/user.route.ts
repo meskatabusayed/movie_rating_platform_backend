@@ -8,9 +8,9 @@ import { UserController } from "./user.controller.js";
 const router = Router();
 
 router.post(
-  "/register",
+  "/create-admin",
   validateRequest(UserValidation.createUserValidationSchema),
-  UserController.createUser
+  UserController.createAdmin
 );
 
 

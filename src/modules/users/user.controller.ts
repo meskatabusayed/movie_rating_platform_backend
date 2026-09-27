@@ -2,13 +2,13 @@ import type { Request, Response } from "express";
 import { UserService } from "./user.service.js";
 
 
-const createUser = async (req: Request, res: Response) => {
+const createAdmin = async (req: Request, res: Response) => {
   try {
-    const user = await UserService.createUser(req.body);
+    const user = await UserService.createAdminIntoDB(req.body);
 
     res.status(201).json({
       success: true,
-      message: "User created successfully",
+      message: "Admin created successfully",
       data: user,
     });
   } catch (error) {
@@ -77,7 +77,7 @@ const updateSingleUser = async (req: Request, res: Response) => {
 };
 
 export const UserController = {
-  createUser,
+  createAdmin,
   getAllUsers,
   updateSingleUser
 };

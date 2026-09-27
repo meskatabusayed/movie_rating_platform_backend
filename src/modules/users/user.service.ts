@@ -3,24 +3,24 @@ import { User } from "./user.model.js";
 
 
 
-const createUser = async (payload: TUser) => {
+const createAdminIntoDB = async (payload: TUser) => {
   const { name, email, password } = payload;
 
   // Check existing user
-  const existingUser = await User.findOne({ email });
+  const existingAdmin = await User.findOne({ email });
 
-  if (existingUser) {
-    throw new Error("User already exists with this email");
+  if (existingAdmin) {
+    throw new Error("Admin already exists with this email");
   }
 
-  const user = await User.create({
+  const admin = await User.create({
     name,
     email,
     password,
-    role: "USER",
+    role: "ADMIN",
   });
 
-  return user;
+  return admin;
 };
 
 const getAllUsers = async () => {
@@ -42,7 +42,7 @@ const updateSingleUserIntoDB = async (userId: string, payload: Partial<TUser>) =
 };
 
 export const UserService = {
-  createUser,
+  createAdminIntoDB,
   getAllUsers,
   updateSingleUserIntoDB
 };    
